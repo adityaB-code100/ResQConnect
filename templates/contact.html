@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>Contact us</h2>
+    <form action="/c" method="POST">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required>
+
+        <label for="contact">Contact Number</label>
+        <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
+
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
+
+        <label for="description">Complaint Description</label>
+        <textarea id="description" name="description" rows="4" required>{{ request.form.get('description', '') }}</textarea>
+
+        <button type="submit">Submit Complaint</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="service">
+<div class="card">
+    <a href="/home">
+        <p>{{card.Emergency}}</p>
+        <img src="{{card.img}}" alt="fire">
+        <p>Call {{card.helpline}}</p>
+
+    </a>
+</div>
+
+<p>{{card.firstaid}}</p>
+
+
+</div>
+{% endblock %}
