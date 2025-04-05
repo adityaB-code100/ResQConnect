@@ -11,12 +11,8 @@
             <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
 
             <label for="emergency">Type of Emergency</label>
-            <select id="emergency" name="emergency" required>
-                <option value="fire" {% if request.form.get('emergency') == 'fire' %}selected{% endif %}>Fire</option>
-                <option value="medical" {% if request.form.get('emergency') == 'medical' %}selected{% endif %}>Medical</option>
-                <option value="police" {% if request.form.get('emergency') == 'police' %}selected{% endif %}>Police</option>
-                <option value="other" {% if request.form.get('emergency') == 'other' %}selected{% endif %}>Other</option>
-            </select>
+            <input type="text" id="emergency" name="emergency" 
+                   value="{{ request.form.get('emergency', '') }}" required>
 
             <label for="location">Location</label>
             <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
