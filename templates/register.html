@@ -1,26 +1,42 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <div class="form-container">
-        <h2>Emergency Complaint Form</h2>
+    <div class="form-container" >
+        <p>Emergency Complaint Form</p>
         <form action="/" method="POST">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required>
 
-            <label for="contact">Contact Number</label>
-            <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
+            <div>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required>
+            </div>
+           
+            <div>
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
+    
+            </div>
 
-            <label for="emergency">Type of Emergency</label>
-            <input type="text" id="emergency" name="emergency" 
-                   value="{{ request.form.get('emergency', '') }}" required>
+            <div>
+                <label for="emergency">Type of Emergency</label>
+                <input type="text" id="emergency" name="emergency" 
+                     value="{{ request.form.get('emergency', '') }}" required>
 
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
-
-            <label for="description">Complaint Description</label>
-            <textarea id="description" name="description" rows="4" required>{{ request.form.get('description', '') }}</textarea>
-
-            <button type="submit">Submit Complaint</button>
+            </div>
+           
+            <div>
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
+            </div>
+            
+            <div>
+                <label for="description" >Complaint Description</label>
+                <textarea id="description" name="description" rows="4" cols="60" required>{{ request.form.get('description', '') }}</textarea>
+            </div>
+            
+            <div>
+                <button type="submit">Submit Complaint</button>
+            </div>
+           
         </form>
     </div>
 

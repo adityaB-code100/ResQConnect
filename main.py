@@ -110,8 +110,12 @@ def register():
 @app.route("/service/<int:card_id>")
 def first_aid(card_id):
     card = Card.query.get(card_id)
+     
 
-    return render_template('first_aid.html',card=card)
+    firstaid_para= card.firstaid
+    firstaid_list=firstaid_para.split('.')
+    print(firstaid_para)
+    return render_template('first_aid.html',card=card, firstaid_list= firstaid_list)
 
 
 @app.route("/service")
