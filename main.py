@@ -114,7 +114,6 @@ def first_aid(card_id):
 
     firstaid_para= card.firstaid
     firstaid_list=firstaid_para.split('.')
-    print(firstaid_para)
     return render_template('first_aid.html',card=card, firstaid_list= firstaid_list)
 
 

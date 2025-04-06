@@ -1,10 +1,12 @@
 
+
+a="/service"
   const sentences = [
-    { text: "Emergency assistance at your fingertips", href: "#" },
-    { text: "Stay safe, we are here to help", href: "#" },
-    { text: "Call 1091 for Women Helpline", href: "#" },
-    { text: "In case of fire, dial 101 immediately", href: "#" },
-    { text: "Help is just a call away", href: "#" }
+    { text: "Emergency assistance at your fingertips", href: a },
+    { text: "Stay safe, we are here to help", href: a},
+    { text: "Call 1091 for Women Helpline", href: a },
+    { text: "In case of fire, dial 101 immediately", href: a },
+    { text: "Help is just a call away", href: a }
   ];
 
   let index = 0;

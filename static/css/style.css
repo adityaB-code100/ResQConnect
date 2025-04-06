@@ -103,6 +103,7 @@ footer {
     z-index: 1;
     text-align: center;
     height: 10rem;
+    margin-top: 0.5rem;
 }
 
 .foot {
@@ -141,6 +142,7 @@ main {
     justify-content: center;
     gap: 1.5rem;
     padding: 2rem;
+    
 }
 
 .card {
@@ -177,6 +179,11 @@ main {
     margin-bottom: 0.5rem;
     object-fit: cover;
     border-radius: 5%;
+    background-color: transparent;
+
+}
+.card p{
+    background-color: transparent;
 }
 
 /* Form Styling */
@@ -247,10 +254,15 @@ button[type="submit"]:hover {
 }
 
 /* First Aid Styling */
+.firstaid{
+    display: flex;
+    flex-direction: column;
+}
 .firstaid li {
     margin: 0.2rem 0;
     padding: 0.2rem;
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
