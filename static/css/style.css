@@ -76,7 +76,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 1rem;
-    border-top: 1px solid black;
+    border-top: 0.8px solid black;
 }
 
 .navbar a {
@@ -156,11 +156,13 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .card:hover {
     background-color: whitesmoke;
     transform: scale(1.05);
+
 }
 
 .card a {

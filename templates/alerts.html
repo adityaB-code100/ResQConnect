@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disaster Alerts</title>
+    <style>
+        /* body { font-family: Arial; font-size: 14px; }
+        .alert { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-left: 5px solid #0077ff; border-radius: 6px; }
+        .title { font-weight: bold; color: #0077ff; } */
+
+        body { font-family: Arial; font-size: 10px; padding: 10px; }
+        .alert {
+            border: 2px solid #0077ff;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f4fff4;
+            color: #333;
+            margin-top: 1rem;
+            box-shadow: 15px black;
+        }
+        .title { color: #0077ff; font-size: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    {% for event in events %}
+        <div class="alert">
+            <p class="title">{{ event.title }}</p>
+            <p><strong>Category:</strong> {{ event.category }}</p>
+            <p><strong>Date:</strong> {{ event.date }}</p>
+            <p><strong>Coordinates:</strong> {{ event.coordinates }}</p>
+        </div>
+    {% else %}
+        <p>No recent alerts found.</p>
+    {% endfor %}
+</body>
+</html>
+

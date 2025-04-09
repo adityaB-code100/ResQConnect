@@ -1,4 +1,7 @@
 from flask import Flask, render_template, redirect,request
+import requests
+from datetime import datetime, timedelta
+
 from flask_sqlalchemy import SQLAlchemy
 import json
 from datetime import datetime
@@ -139,51 +142,65 @@ def Admin():
 
 
 
+@app.route("/policy")
+def policy():
+    return render_template('policy.html')
+
+
+@app.route('/alerts')
+def show_recent_global_alerts():
+    url = "https://eonet.gsfc.nasa.gov/api/v3/events"
+    response = requests.get(url)
+    data = response.json()
+    all_events = data.get('events', [])
+    
+    recent_events = []
+    one_week_ago = datetime.utcnow() - timedelta(days=7)
+
+    for event in all_events:
+        if event.get('geometry'):
+            geometry = event['geometry'][0]
+            date_str = geometry['date']
+            event_date = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
+
+            if event_date >= one_week_ago:
+                category = event.get('categories')[0]['title'] if event.get('categories') else 'Unknown'
+                recent_events.append({
+                    'title': event['title'],
+                    'category': category,
+                    'date': event_date.strftime('%d-%b-%Y %H:%M'),
+                    'coordinates': geometry['coordinates']
+                })
+
+    recent_events.sort(key=lambda e: e['date'], reverse=True)
+    return render_template('alerts.html', events=recent_events)
 
 
 
+@app.route('/weather')
+def show_weather():
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {
+        'latitude': 28.6139,  # New Delhi
+        'longitude': 77.2090,
+        'current_weather': 'true',
+        'timezone': 'auto'
+    }
 
+    response = requests.get(url, params=params)
+    data = response.json()
+    
+    weather_data = data.get('current_weather', {})
 
+    weather = {
+        'temperature': weather_data.get('temperature'),
+        'windspeed': weather_data.get('windspeed'),
+        'winddirection': weather_data.get('winddirection'),
+        'time': weather_data.get('time'),
+        'weathercode': weather_data.get('weathercode')
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render_template('weather.html', weather=weather)
 
 
 
