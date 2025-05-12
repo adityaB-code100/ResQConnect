@@ -1,56 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<div class="carousel-container">
-    <div class="carousel-slide active">🚨 What to do during a flood</div>
-    <div class="carousel-slide">🔥 First aid for burns</div>
-    <div class="carousel-slide">🌍 Earthquake safety steps</div>
-  </div>
-
-
-  <style>.carousel-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #fff3cd;
-    border: 2px solid #f0ad4e;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #856404;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  .carousel-slide {
-    display: none;
-  }
-  
-  .carousel-slide.active {
-    display: block;
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  </style>
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel-slide");
-  
-    function showSlide(index) {
-      slides.forEach(slide => slide.classList.remove("active"));
-      slides[index].classList.add("active");
-    }
-  
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, 3000); // Change every 3 seconds
-  </script>
+<h1>Work in Progress</h1>
   
 {% endblock %}

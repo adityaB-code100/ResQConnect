@@ -4,8 +4,23 @@
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(213, 204, 204);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
 }
+.plus-jakarta-sans-1 {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .oswald-1 {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
 
 body {
     display: flex;
@@ -15,12 +30,13 @@ body {
 
 /* Title Header */
 .title {
-    background-color: rgba(176, 16, 16, 0.45);
+    position: relative;
     height: 5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem 0.5rem 20px;
+    background-color: rgba(176, 16, 16, 0.45);
     border: 1px solid black;
 }
 
@@ -40,8 +56,16 @@ body {
     padding: 0.5rem;
 }
 
-.te3 {
-    margin-right: 0.8rem;
+.telement.te2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 2rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
 }
 
 /* Tagline Scroller */
@@ -96,7 +120,7 @@ body {
 
 /* Footer */
 footer {
-    background-color: gray;
+    background-color: #5a4c4c;
     color: white;
     padding: 1rem;
     position: relative;
@@ -104,6 +128,8 @@ footer {
     text-align: center;
     height: 10rem;
     margin-top: 0.5rem;
+    border-radius: 0 0 10px 10px;
+    border-top: solid black 2px;
 }
 
 .foot {
@@ -111,6 +137,32 @@ footer {
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
+    padding: 1rem;
+    background-color: transparent;
+}
+
+.foot a {
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+}
+
+.foot a:hover {
+    text-decoration: underline;
+}
+
+.copy {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.copy p {
+    margin: 0;
+    background-color: transparent;
 }
 
 /* Layouts */
@@ -131,8 +183,8 @@ main {
     width: 80%;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    padding-bottom: 12rem; /* Prevent overlap with footer */
+    padding: 0.01rem;
+    padding-bottom: 12rem;
 }
 
 /* Cards Section */
@@ -142,7 +194,6 @@ main {
     justify-content: center;
     gap: 1.5rem;
     padding: 2rem;
-    
 }
 
 .card {
@@ -156,13 +207,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .card:hover {
     background-color: whitesmoke;
     transform: scale(1.05);
-
 }
 
 .card a {
@@ -182,9 +231,9 @@ main {
     object-fit: cover;
     border-radius: 5%;
     background-color: transparent;
-
 }
-.card p{
+
+.card p {
     background-color: transparent;
 }
 
@@ -256,15 +305,21 @@ button[type="submit"]:hover {
 }
 
 /* First Aid Styling */
-.firstaid{
+.firstaid {
     display: flex;
     flex-direction: column;
 }
-.firstaid li {
-    margin: 0.2rem 0;
-    padding: 0.2rem;
-}
 
+
+.firstaid li {
+    margin-left: 75px;   /* adjust as needed */
+    line-height: 1.6;  
+}
+.firstaid h1 {
+    margin-left: 75px;   /* adjust as needed */
+    line-height: 1.6; 
+align-items: center;
+ }
 
 /* Responsive Design */
 @media (max-width: 768px) {

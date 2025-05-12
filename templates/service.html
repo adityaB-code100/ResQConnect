@@ -6,10 +6,10 @@
 {% for card in cards %}
 
 <div class="card">
-    <a href="/service/{{card.id}}" class="card-in">
-        <p>{{card.Emergency}}</p>
-        <img src="{{card.img}}" alt="{{card.Emergency}}">
-        <p>Call {{card.helpline}}</p>
+    <a href="/service/{{card._id}}" class="card-in">
+        <p>{{card.title}}</p>
+        <img src="{{card.image_url}}" alt="{{card.Emergency}}">
+        <p>Call {{card.number}}</p>
     </a>
 </div>
 
