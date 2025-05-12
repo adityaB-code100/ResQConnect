@@ -170,3 +170,5 @@ def show_weather():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    alert_store()
+    wether_store()
