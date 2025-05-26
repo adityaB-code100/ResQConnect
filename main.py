@@ -4,6 +4,9 @@ from bson.objectid import ObjectId
 import requests
 import json
 from datetime import datetime, timedelta
+from flask import  jsonify
+from gemini_api import generate_gemini_response  # Import function
+
 
 app = Flask(__name__)
 
@@ -97,7 +100,10 @@ def about():
 
 @app.route("/Admin")
 def Admin():
-    return render_template('Admin.html')
+    contacts = list(mongo.db.contacts.find())
+    print(contacts)
+
+    return render_template('Admin.html',contacts=contacts)
 
 
 @app.route("/policy")
@@ -166,6 +172,25 @@ def show_weather():
 
     return render_template('weather.html', weather=weather)
 
+@app.route('/g')
+def indexb():
+    return render_template('index.html')
+
+# @app.route('/generate', methods=['POST'])
+# def generate():
+#     prompt = request.json.get("prompt")
+#     response = generate_gemini_response(prompt)
+#     return jsonify({"response": response})
+@app.route('/generate', methods=['POST'])
+def generate_response():
+    data = request.get_json()
+    prompt = data.get('prompt', '')
+    
+    # Simulated AI response
+    response = generate_gemini_response(prompt)
+    print(response)
+
+    return jsonify({'response': response})
 
 
 if __name__ == "__main__":

@@ -1,1 +1,16 @@
-<h1>Aditya</h1>
+
+ {% extends "layout.html" %}
+
+{% block body %}
+<div class="service">
+    {% for contact in contacts %}
+        <div class="card">
+            <h1>{{ contact.name }}</h1>
+            <p><strong>Contact:</strong> {{ contact.contact }}</p>
+            <p><strong>Location:</strong> {{ contact.location }}</p>
+            <p><strong>Description:</strong> {{ contact.description }}</p>
+            <p><strong>Timestamp:</strong> {{ contact.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
