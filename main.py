@@ -176,11 +176,6 @@ def show_weather():
 def indexb():
     return render_template('index.html')
 
-# @app.route('/generate', methods=['POST'])
-# def generate():
-#     prompt = request.json.get("prompt")
-#     response = generate_gemini_response(prompt)
-#     return jsonify({"response": response})
 @app.route('/generate', methods=['POST'])
 def generate_response():
     data = request.get_json()
@@ -188,7 +183,7 @@ def generate_response():
     
     # Simulated AI response
     response = generate_gemini_response(prompt)
-    print(response)
+    # print(response)
 
     return jsonify({'response': response})
 
