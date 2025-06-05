@@ -1,6 +1,6 @@
 import google.generativeai as genai
 # api='api'
-api='AIzaSyBEcCPyPPlo5r9O09ftFdYYdk9V6TewDZo'
+api=''
 genai.configure(api_key=api)
 
 # Load the Gemini model
