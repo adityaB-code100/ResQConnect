@@ -342,3 +342,128 @@ align-items: center;
         height: auto;
     }
 }
+/* Global Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Title Header */
+.title {
+    background-color: #2c3e50;
+    color: white;
+    border-bottom: 2px solid #4A90E2;
+}
+
+.logo,
+.telement,
+.telement.te2 {
+    background-color: transparent;
+    color: white;
+}
+
+/* Tagline Scroller */
+.tagline {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.tagline a {
+    color: #4A90E2;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff;
+    border-top: 1px solid #ccc;
+}
+
+.navbar a {
+    color: #2c3e50;
+}
+
+.navbar a:hover {
+    background-color: #4A90E2;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.foot,
+.copy {
+    background-color: transparent;
+    color: white;
+}
+
+/* Layouts */
+.sidebar {
+    background-color: #e3e3e3;
+}
+
+main {
+    background-color: #ffffff;
+}
+
+/* Cards Section */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+}
+
+.card:hover {
+    background-color: #f0f8ff;
+}
+
+/* Form Styling */
+.form-container {
+    background-color: #ffffff;
+}
+
+.form-container p {
+    color: #2c3e50;
+}
+
+label {
+    color: #333;
+}
+
+input[type="text"],
+input[type="tel"],
+textarea {
+    border: 1px solid #ccc;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #4A90E2;
+}
+
+button[type="submit"] {
+    background-color: #4A90E2;
+}
+
+button[type="submit"]:hover {
+    background-color: #357ABD;
+}
+
+/* First Aid Styling */
+.firstaid li,
+.firstaid h1 {
+    color: #2c3e50;
+}
+
+/* Responsive Design remains same */

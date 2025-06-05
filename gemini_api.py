@@ -1,6 +1,6 @@
 import google.generativeai as genai
-# Configure Gemini with your API key
-api='api'
+# api='api'
+api='AIzaSyBEcCPyPPlo5r9O09ftFdYYdk9V6TewDZo'
 genai.configure(api_key=api)
 
 # Load the Gemini model
@@ -9,9 +9,9 @@ def remove_asterisks(text):
     return text.replace('*', '')
 
 def generate_gemini_response(prompt):
-    """
-    Sends a prompt to Gemini and returns the response.
-    """
+    
+    # Sends a prompt to Gemini and returns the response.
+
     if not prompt:
         return "Error: Empty prompt provided."
     try:
@@ -21,4 +21,4 @@ def generate_gemini_response(prompt):
 
         return clean_response
     except Exception as e:
-        return f"Error: {str(e)}"
+        return "Error:"

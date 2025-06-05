@@ -5,7 +5,9 @@ import requests
 import json
 from datetime import datetime, timedelta
 from flask import  jsonify
-from gemini_api import generate_gemini_response  # Import function
+from gemini_api import generate_gemini_response  
+from data_fetcher import alert_store, wether_store,cleanup_old_alerts, cleanup_old_weather
+
 
 
 app = Flask(__name__)
@@ -14,7 +16,7 @@ with open('config.json', 'r') as c:
     params = json.load(c)["params"]
 
 # MongoDB connection
-app.config["MONGO_URI"] = params["mongo_uri"]  # Update config.json with your Mongo URI
+app.config["MONGO_URI"] = params["mongo_uri"]  
 mongo = PyMongo(app)
 
 # Routes
@@ -110,67 +112,30 @@ def Admin():
 def policy():
     return render_template('policy.html')
 
-def alert_store():
-    url = "https://eonet.gsfc.nasa.gov/api/v3/events"
-    response = requests.get(url)
-    data = response.json()
-    all_events = data.get('events', [])
-    
-    recent_events = []
-    one_week_ago = datetime.utcnow() - timedelta(days=7)
-
-    for event in all_events:
-        if event.get('geometry'):
-            geometry = event['geometry'][0]
-            date_str = geometry['date']
-            event_date = datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%SZ')
-
-            if event_date >= one_week_ago:
-                category = event.get('categories')[0]['title'] if event.get('categories') else 'Unknown'
-                recent_events.append({
-                    'title': event['title'],
-                    'category': category,
-                    'date': event_date.strftime('%d-%b-%Y %H:%M'),
-                    'coordinates': geometry['coordinates']
-                })
-    mongo.db.alerts.insert_many(recent_events)
 
 @app.route('/alerts')
 def show_recent_global_alerts():
-   
-    recent_alerts = mongo.db.alerts.find()
-    recent_alerts = list(mongo.db.alerts.find().sort("date", -1).limit(5))
+    recent_alerts = list(mongo.db.alerts.find().sort("date", -1))
+
+    seen = set()
+    filtered_alerts = []
+    for alert in recent_alerts:
+        key = (alert['title'], alert['date'])
+        if key not in seen:
+            seen.add(key)
+            filtered_alerts.append(alert)
+        if len(filtered_alerts) == 5:
+            break
+
+    recent_alerts = filtered_alerts
     return render_template('alerts.html', events=recent_alerts)
-
-def wether_store():
-    url = "https://api.open-meteo.com/v1/forecast"
-    params = {
-        'latitude': 28.6139,
-        'longitude': 77.2090,
-        'current_weather': 'true',
-        'timezone': 'auto'
-    }
-
-    response = requests.get(url, params=params)
-    data = response.json()
-
-    weather_data = data.get('current_weather', {})
-
-    weather = {
-        'temperature': weather_data.get('temperature'),
-        'windspeed': weather_data.get('windspeed'),
-        'winddirection': weather_data.get('winddirection'),
-        'time': weather_data.get('time'),
-        'weathercode': weather_data.get('weathercode')
-    }
-    mongo.db.weather.insert_one(weather)
 
 
 @app.route('/weather')
 def show_weather():
-    weather= list(mongo.db.weather.find().sort("time"))
-
+    weather=mongo.db.weather.find_one(sort=[("time", -1)])  
     return render_template('weather.html', weather=weather)
+
 
 @app.route('/g')
 def indexb():
@@ -178,6 +143,7 @@ def indexb():
 
 @app.route('/generate', methods=['POST'])
 def generate_response():
+    
     data = request.get_json()
     prompt = data.get('prompt', '')
     
@@ -194,3 +160,5 @@ if __name__ == "__main__":
     app.run(debug=True)
     alert_store()
     wether_store()
+    cleanup_old_alerts(days=7)    
+    cleanup_old_weather(days=1) 

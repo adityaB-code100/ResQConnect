@@ -1,43 +1,47 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <div class="form-container" >
-        <p>Emergency Complaint Form</p>
-        <form action="/" method="POST">
+<div class="form-container">
+    <p>Emergency Complaint Form</p>
+    <form id="complaintForm" action="/" method="POST" onsubmit="return handleFormSubmit();">
 
-            <div>
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required>
-            </div>
-           
-            <div>
-                <label for="contact">Contact Number</label>
-                <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
-    
-            </div>
+        <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" value="{{ request.form.get('name', '') }}" required>
+        </div>
 
-            <div>
-                <label for="emergency">Type of Emergency</label>
-                <input type="text" id="emergency" name="emergency" 
-                     value="{{ request.form.get('emergency', '') }}" required>
+        <div>
+            <label for="contact">Contact Number</label>
+            <input type="tel" id="contact" name="contact" value="{{ request.form.get('contact', '') }}" required>
+        </div>
 
-            </div>
-           
-            <div>
-                <label for="location">Location</label>
-                <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
-            </div>
-            
-            <div>
-                <label for="description" >Complaint Description</label>
-                <textarea id="description" name="description" rows="4" cols="60" required>{{ request.form.get('description', '') }}</textarea>
-            </div>
-            
-            <div>
-                <button type="submit">Submit Complaint</button>
-            </div>
-           
-        </form>
-    </div>
+        <div>
+            <label for="emergency">Type of Emergency</label>
+            <input type="text" id="emergency" name="emergency" value="{{ request.form.get('emergency', '') }}" required>
+        </div>
+
+        <div>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" value="{{ request.form.get('location', '') }}" required>
+        </div>
+
+        <div>
+            <label for="description">Complaint Description</label>
+            <textarea id="description" name="description" rows="4" cols="60" required>{{ request.form.get('description', '') }}</textarea>
+        </div>
+
+        <div>
+            <button type="submit">Submit Complaint</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    function handleFormSubmit() {
+        alert("Form submitted successfully!");
+        return true; // Allow the form to be submitted to Flask
+    }
+</script>
 
 {% endblock %}
