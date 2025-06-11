@@ -144,6 +144,8 @@ scheduler.start()
 
 atexit.register(lambda: scheduler.shutdown())
 
+
+
 if __name__ == "__main__":
     
     app.run(debug=True)

@@ -47,6 +47,7 @@ def ad_complaints():
 
 
 @admin_bp.route('/admin/data-graph')
+
 def data_graph():
     if not session.get("logged_in"):
         return redirect(url_for("admin.login"))
@@ -82,7 +83,25 @@ def data_graph():
     fig_date = go.Figure(data=[line_chart], layout=layout_date)
     graphJSON_date = json.dumps(fig_date, cls=plotly.utils.PlotlyJSONEncoder)
 
-    return render_template("datagraph.html", graphJSON_type=graphJSON_type, graphJSON_date=graphJSON_date)
+    # --- Location vs Number of Emergencies Chart ---
+    locations = [entry.get('location') for entry in data if entry.get('location')]
+    location_counts = dict(Counter(locations))
+    location_labels = list(location_counts.keys())
+    location_values = list(location_counts.values())
+
+    location_chart = go.Bar(x=location_labels, y=location_values, marker_color='rgb(100, 200, 100)')
+    layout_location = go.Layout(title='Emergencies by Location',
+                                xaxis=dict(title='Location'),
+                                yaxis=dict(title='Number of Emergencies'))
+    fig_location = go.Figure(data=[location_chart], layout=layout_location)
+    graphJSON_location = json.dumps(fig_location, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return render_template(
+        "datagraph.j2",
+        graphJSON_type=graphJSON_type,
+        graphJSON_date=graphJSON_date,
+        graphJSON_location=graphJSON_location
+    )
 
 
 # Prevent cached pages after logout (very important for session security)
