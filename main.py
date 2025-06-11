@@ -7,6 +7,8 @@ from gemini_api import generate_gemini_response
 from data_fetcher import alert_store, wether_store, cleanup_old_alerts, cleanup_old_weather
 from extension import mongo  # ✅ New import
 from admin_routes import admin_bp  # ✅ Now this won't cause circular import
+from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -126,9 +128,22 @@ def page_not_found(e):
 
 # ------------------- MAIN -------------------
 
+
+# 🕒 Schedule your jobs here
+scheduler = BackgroundScheduler()
+
+scheduler.add_job(alert_store, 'interval', minutes=1)
+
+scheduler.add_job(wether_store, 'interval', minutes=1)
+
+scheduler.add_job(lambda: cleanup_old_alerts(7), 'cron', hour=0, minute=0)
+
+scheduler.add_job(lambda: cleanup_old_weather(1), 'cron', hour=0, minute=30)
+
+scheduler.start()
+
+atexit.register(lambda: scheduler.shutdown())
+
 if __name__ == "__main__":
+    
     app.run(debug=True)
-    alert_store()
-    wether_store()
-    cleanup_old_alerts(days=7)
-    cleanup_old_weather(days=1)
