@@ -1,5 +1,5 @@
 import google.generativeai as genai
-#api='api'
+api='api'
 genai.configure(api_key=api)
 
 # Load the Gemini model
