@@ -122,3 +122,32 @@ def add_no_cache_headers(response):
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
     return response
+
+@admin_bp.route("/admin/Service_Register")
+def service_register():
+    if not session.get("logged_in"):
+        return redirect(url_for("admin.login"))
+
+    # complaints = list(mongo.db.contacts.find())
+    # complaints.reverse()
+    # title="Contact Request Registered"
+    # return render_template('complaint.html', complaints=complaints,title=title)
+    return render_template("Adservice.html")
+
+
+
+@admin_bp.route('/add-service', methods=['POST'])
+def add_service():
+
+    if request.method == 'POST':
+        service={
+            "title" :request.form['serviceTitle'],
+            "image_url": request.form['serviceImage'],  # ✔ using form input (URL)
+
+            "number" : request.form['helpline'],
+            "description" : request.form['firstAid']
+        }
+        mongo.db.card.insert_one(service)
+        return redirect('/admin/Service_Register')
+    return redirect("/admin")
+

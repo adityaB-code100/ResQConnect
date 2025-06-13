@@ -132,9 +132,9 @@ def page_not_found(e):
 # 🕒 Schedule your jobs here
 scheduler = BackgroundScheduler()
 
-scheduler.add_job(alert_store, 'interval', minutes=1)
+scheduler.add_job(alert_store, 'interval', minutes=10)
 
-scheduler.add_job(wether_store, 'interval', minutes=1)
+scheduler.add_job(wether_store, 'interval', minutes=10)
 
 scheduler.add_job(lambda: cleanup_old_alerts(7), 'cron', hour=0, minute=0)
 
