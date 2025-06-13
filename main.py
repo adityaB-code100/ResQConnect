@@ -145,6 +145,12 @@ scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
 
+@app.route('/info/<slug>')
+def get_info(slug):
+    info = mongo.db.info_sections.find_one({"slug": slug})
+    return render_template("policy.html", info=info)
+
+
 
 if __name__ == "__main__":
     

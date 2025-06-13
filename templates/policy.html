@@ -2,39 +2,15 @@
 {% block body %}
 <!-- COPYRIGHT -->
 <section class="legal-section">
-    <h2>Copyright</h2>
-    <p>&copy; 2025 ResQConnect. All rights reserved. This platform, including its content, design, and functionality, is protected under applicable copyright laws. Unauthorized use or reproduction is strictly prohibited.</p>
-  </section>
-  
-  <!-- DISCLAIMER -->
-  <section class="legal-section">
-    <h2>Disclaimer</h2>
-    <p>ResQConnect serves as a bridge to help users connect with emergency services such as police, ambulance, disaster relief, and more. While we strive for accuracy and timely response, we do not guarantee outcomes, service availability, or real-time assistance. Users are advised to directly contact official helplines in urgent situations. We are not liable for any loss or delay resulting from the use of this service.</p>
-  </section>
-  
-  <!-- PRIVACY POLICY -->
-  <section class="legal-section">
-    <h2>Privacy Policy</h2>
-    <p>ResQConnect respects your privacy. Any personal information such as name, location, or contact details submitted via this platform is used solely for emergency response purposes and will not be shared without consent, except with authorized agencies. We implement reasonable security measures to protect your data from misuse or unauthorized access.</p>
-  </section>
-  
-  <!-- TERMS AND CONDITIONS -->
-  <section class="legal-section">
-    <h2>Terms and Conditions</h2>
-    <p>By using ResQConnect, you agree to use the platform responsibly and only for genuine emergency assistance. Misuse of the service, false reporting, or impersonation may result in legal action. The platform is intended to assist and not replace any official emergency services. Your continued use implies acceptance of these terms.</p>
-  </section>
-  
-  <!-- FEEDBACK -->
-  <section class="legal-section">
-    <h2>Feedback</h2>
-    <p>We welcome your feedback to improve ResQConnect. If you have suggestions, complaints, or want to report an issue, please use our <a href="#">Feedback Form</a> or email us at support@resqconnect.com. Your input helps us serve you better.</p>
-  </section>
-  
-  <!-- HELP -->
-  <section class="legal-section">
-    <h2>Help</h2>
-    <p>Need assistance using ResQConnect? Visit our <a href="#">Help Center</a> for guides on how to raise alerts, contact emergency services, and understand platform features. For urgent support, you can also call our helpline at 1800-XXX-XXXX.</p>
-  </section>
+  <h1>{{ info.title }}</h1>
+  <p>{{ info.description }}</p>
+
+  <!-- Go Back and Home Buttons -->
+  <div class="button-group">
+<button class="back-btn" onclick="location.href='/'">← Back to Home</button>
+  </div>
+</section>
+
 <style>
 .legal-section {
     max-width: 900px;
@@ -44,24 +20,49 @@
     box-shadow: 0 20px 10px rgba(2, 2, 2, 0.06);
     font-family: 'Segoe UI', sans-serif;
     color: #333;
-  }
-  
-  .legal-section h2 {
-    font-size: 22px;
+}
+
+.legal-section h1 {
+    font-size: 26px;
     color: #004aad;
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-  
-  .legal-section p {
+    margin-bottom: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.legal-section p {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 12px;
-  }
-  
-  .legal-section a {
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.back-btn {
+    background-color: #004aad;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #003580;
+}
+
+.home-link {
     color: #0077cc;
     text-decoration: underline;
-  }
-</style>  
-{%endblock %}
+    font-size: 14px;
+    align-self: center;
+}
+</style>
+{% endblock %}

@@ -43,7 +43,18 @@ def ad_complaints():
 
     complaints = list(mongo.db.complaints.find())
     complaints.reverse()
+    title="Complaints Registered"
     return render_template('complaint.html', complaints=complaints)
+
+@admin_bp.route("/admin/contact_request")
+def ad_contact_request():
+    if not session.get("logged_in"):
+        return redirect(url_for("admin.login"))
+
+    complaints = list(mongo.db.contacts.find())
+    complaints.reverse()
+    title="Contact Request Registered"
+    return render_template('complaint.html', complaints=complaints,title=title)
 
 
 @admin_bp.route('/admin/data-graph')
